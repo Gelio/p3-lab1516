@@ -1,0 +1,47 @@
+
+!!! Uwaga !!!
+W pliku Program.cs odkomentować odpowiednie fragmenty funkcji testujących
+
+Etap 1.0 za 1p
+W pliku StringExtender.cs, w klasie StringExtender stwórz metodę rozszerzającą IsPalindrom, która
+rozszerza klasę String o następującą funkcjonalność: możemy wywołać na obiekcie klasy String
+bezparametrową metodę IsPalindrom(), która zwraca wartość logiczną, czy dany obiekt jest palindromem.
+String jest palindromem, gdy czytany od tyłu jest taki sam, jak od przodu. Metoda ma być case-sensitive,
+czyli litera "A" nie jest równa literze "a" i w szczególności "Aa" nie jest palindromem.
+
+Etap 2 za łącznie 4p
+W tym etapie będziemy implementowali kolejkę priorytetową. Rozbijmy to na kilka kroków:
+
+Etap 2.0 za 0.5p
+Stwórz interfejs uogólniony IPriorityQueue w pliku IPriorityQueue.cs 
+z jednym typem parametryzującym T (to ten typ będzie przechowywany w kolejce).
+Zapewnij, że typ parametryzujący T będzie strukturą, a także, że będzie można porównywać 
+jego wartości z innymi obiektami tego typu (interfejs IComparable<T>). Interfejs 
+musi narzucać następujące własności i metody:
+* Size typu int - właściwość, tylko do odczytu, zwraca rozmiar kolejki
+* Put(...) - metoda jako argument przyjmuje obiekt typu T, wstawia go do kolejki. Nie zwraca niczego.
+* Get() -  metoda nie przyjmuje żadnych argumentów, zwraca (i usuwa go z kolejki) element o najlepszym priorytecie
+
+Etap 2.1 za 2.0p
+W pliku PriorityQueueArray.cs zaimplementuj uogólnioną klasę kolejki priorytetowej MinPriorityQueueArray.
+Idea jest następująca (podobna, jak implementacja stosu na tablicy):
+* Klasa przechowuje tablicę typu T. Tablica po stworzeniu instancji klasy ma rozmiar 4.
+* Elementy wrzucamy do tablicy na koniec.
+* Jeśli brakuje nam miejsca w tablicy, tworzymy nową tablicę o 2 razy większym rozmiarze.
+Przepisujemy elementy do nowej tablicy.
+* Zwrócenie elementu polega na tym, że przeszukujemy liniowo całą tablicę w poszukiwaniu
+NAJMNIEJSZEGO elementu. Ponieważ element ten jest usuwany z tablicy, należy na jego miejsce przepisać element ostatni.
+* Gdy kolejka jest pusta, a ktoś żąda elementu, rzuć wyjątek, o tak:
+throw new Exception("Pusta kolejka");
+
+Etap 2.2 za 0.5p
+W tym etapie będziemy implementować interfejs ICloneable. Zadeklaruj, że interfejs 
+IPriorityQueue dziedziczy po interfejsie ICloneable, a następnie zaimplementuj metodę 
+object Clone() w klasie MinPriorityQueueArray.
+Metoda ta ma zwracać głęboką kopię kolejki priorytetowej.
+
+Etap 2.3 za 1p
+W pliku IPriorityQueueExtender.cs stwórz metodę rozszerzającą ToSortedArray() dla
+naszego interfejsu IPriorityQueue. Metoda ma na celu zwrócić tablicę,
+która zawiera posortowane elementy kolejki, od najmniejszego do największego.
+Metoda nie może zmienić kolejki, której dotyczy.

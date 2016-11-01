@@ -1,0 +1,79 @@
+Delegacje i wyrażenia lambda
+============================
+
+Napisać zestaw funkcji operujących na tablicach (klasa ArrayMagic)
+i zestaw funkcji pomocniczych (Functions):
+
+Do każdego etapu należy zadeklarować odpowiednie typy delegacji
+lub skorzystać z tych istniejących w bibliotece standardowej (Func, Predicate, Action)
+
+Etap 1 (1p):
+
+Napisać metody:
+ - ArrayMagic.ForEach<T>, która przyjmuje dwa parametry:
+   tablicę typu T oraz delegację T -> void
+   Efektem wywołania ForEach ma być wywołanie delegacji dla każdego
+   elementu tablicy po kolei.
+
+ - ArrayMagic.GenerateArray<T>:
+   przyjmuje dwa parametry:
+   delegację, która przyjmuje 0 parametrów i zwraca wartość typu T
+   oraz liczbę k typu int.
+   Generuje tablicę o długości k, która zawiera elementy będące kolejnymi
+   wywołaniami delegacji podanej jako prametr
+
+ - ArrayMagic.TransformArray<T>:
+   przyjmuje dwa parametry: tablicę elementów typu T oraz delegację T -> T
+   Zwraca *nową* tablicę o tej samej długości, kolejnymi elementami są
+   wartości tablicy wejściowej, przekształcone delegacją.
+
+W funkcji main: odkomentować fragment korzystający z
+zaimplementowanych metod i uzupełnić wywołania zgodnie z komentarzem
+odkomentować PrintArray, który korzysta z ForEach.
+
+Etap 2 (1p):
+Napisać metody:
+ - Functions.NaturalNumbers:
+    bezparametrową, zwracającą bezparametrową  delegację.
+    Zwrócona delegacja przy kolejnych wywołaniach zwraca kolejne
+    liczby naturalne (typu int), rozpoczynając od 1.
+
+    Wielokrotne wywołanie NaturalNumbers ma zwracać działające
+    niezależnie od siebie delegacje.
+
+ - Functions.Multiply:
+   Przyjmuje jeden parametr m typu double. Zwraca delegację double -> double,
+   która zwraca swój argument pomnożony przez m
+
+W funkcji Main: odkomentować odpowiedni etap
+
+Etap 3 (0.5p):
+W funkcji Main: Z użyciem metody ForEach i odpowiedniego wyrażenia lambda,
+w zmiennej sum policzyć sumę elementów w ar1.
+
+Etap 4 (1p):
+Zaimplementować:
+ - Functions.Combine, która przyjmuje dwie delegacje T -> T, nazwijmy je
+   f1 i f2. Wynikiem jest delegacja T->T, która zwraca złożenie
+   funkcji.
+
+   Przypomnienie: złożenie funkcji f1 i f2: (f1·f2)(x)=f1(f2(x))
+
+ - Functions.Add, która przyjmuje dwie delegacje T -> T, nazwijmy je
+   f1 i f2. Wynikiem jest delegacja T->T , która zwraca wartość
+   f1(x) + f2(x)
+    
+
+Odkomentować odpowiedni fragment Main
+
+Etap 5 (1.5p):
+
+Zaimplementować:
+ - Functions.LosowanieBezZwracania(int lower, int upper, Random random),
+ która z użyciem podanego generatora liczb losowych,
+ będzie losować bez zwracania wartości całkowite z przedziału
+ [lower, upper] (domkniętego). Po wylosowaniu wszystkich wartości
+ będzie zgłaszać wyjątek InvalidOperationException. 
+
+Odkomentować właściwy fragment Main.
+

@@ -1,0 +1,30 @@
+Etap1
+UnstableToyFactory: Building toy: Chess
+UnstableToyFactory: Building toy: Checkers
+UnstableToyFactory: Building toy: Go
+DollFactory: Building toy: Barbie
+UnstableToyFactory: Building toy: Ken
+Unhandled message: [Message: PresentName=The Fellowship of the Ring, PresentType=Book]
+
+Etap2
+Tylko doll
+Unhandled message: [Message: PresentName=Chess, PresentType=Game]
+Unhandled message: [Message: PresentName=Checkers, PresentType=Game]
+Unhandled message: [Message: PresentName=Go, PresentType=Game]
+DollFactory: Building toy: Barbie
+DollFactory: Building toy: Ken
+Unhandled message: [Message: PresentName=The Fellowship of the Ring, PresentType=Book]
+nic
+Unhandled message: [Message: PresentName=Chess, PresentType=Game]
+Unhandled message: [Message: PresentName=Checkers, PresentType=Game]
+Unhandled message: [Message: PresentName=Go, PresentType=Game]
+Unhandled message: [Message: PresentName=Barbie, PresentType=Doll]
+Unhandled message: [Message: PresentName=Ken, PresentType=Doll]
+Unhandled message: [Message: PresentName=The Fellowship of the Ring, PresentType=Book]
+Tylko unstable
+UnstableToyFactory: Building toy: Chess
+UnstableToyFactory: Building toy: Checkers
+UnstableToyFactory: Building toy: Go
+Unhandled message: [Message: PresentName=Barbie, PresentType=Doll]
+Unhandled message: [Message: PresentName=Ken, PresentType=Doll]
+Unhandled message: [Message: PresentName=The Fellowship of the Ring, PresentType=Book]

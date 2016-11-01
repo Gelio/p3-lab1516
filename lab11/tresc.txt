@@ -1,0 +1,79 @@
+#Programowanie sterowane zdarzeniami
+
+##Opis zadania
+
+Zaimplementować klasę SantaPostOffice, która będzie przyjmować listy
+do Świętego Mikołaja, i koordynować zlecanie fabrykom wyprodukowania
+odpowiednich zabawek.
+
+Dostarczona jest klasa Message, reprezentująca list w systemie.
+Message zawiera nazwę i typ zabawki, którą należy dostarczyć. 
+
+Zadanie należy zaimplementować z użyciem mechanizmu zdarzeń w języku C#.
+Zadanie jest podzielone na 2 etapy.
+
+W zadaniu nie wolno definiować swoich typów delegacyjnych. Należy
+wykorzystać istniejące typy (nie koniecznie wszystkie z nich):
+ - Func
+ - Predicate
+ - Action
+
+Zadanie można oddawać do godziny 12:55, po tej godzinie zostaną
+sprawdzone tylko wcześniej zgłoszone prace. 
+Najpóźniej o godzinie 13:00 wszyscy muszą opuścić salę i udać się
+bezpośrednio do sali 107. W dniu dzisiejszym nie ma zmniejszonej
+liczby punktów po określonym czasie (jak to zwykle ma miejsce o 13:45).
+
+Do programu jest załączone wzorcowe wyjście. Zaimplementowany program
+powinien generować to samo, z dokładnością do elementów związanych z
+generatorem liczb losowych. 
+
+##Etapy
+
+###Etap 1 (2 pkt)
+
+Zaimplementować fabryki i przekazywanie listów do fabryk.
+
+Architektura jest następująca: fabryki prezentów zapisują się na
+zdarzenie MailArrived i jeśli dana zabawka może być wyprodukowana
+przez fabrykę, zwracają true w reakcji na zdarzenie.
+
+SantaPostOffice w reakcji na otrzymany list wywołując zdarzenie próbuje je przekazać kolejno do
+pierwszej, drugiej, ... fabryki, aż do momentu, gdy któraś zgodzi się
+na produkcję. Pozostałe fabryki nie są wtedy odpytywane. 
+
+W klasie SantaPostOffice:
+  - Zdefiniować zdarzenie MailArived. Delegacja obsługująca to
+    zdarzenie przyjmuje parametr typu Message i zwraca wartość bool:
+    true, gdy fabryka zdecydowała się obsłużyć dane zamówienie, false w p.p.
+  - Uzupełnić metodę ReceiveMessage o próbę zlecenia produkcji zabawki fabrykom:
+    Dla każdej fabryki zapisanej na zdarzenie MailArived wywołać kolejno ich metody obsługi
+    tego zdarzenia, aż do momentu, gdy któraś z fabryk zgodzi się na wyprodukowanie zabawki
+    (nastepnych fabryk już nie pytamy). Jeśli żadna z fabryk nie zgodzi się produkować,
+    wypisać na konsole komunikat "Unhandled message "+<message.ToString()>.
+
+Zaimplementować dwie klasy implementujące interfejs IToyFactory:
+ - DollFactory (w pliku DollFactory.cs)
+   Fabryka zgadza się wyprodukować wszystkie zabawki typu Doll
+   i tylko te zabawki. 
+ - UnstableToyFactory (w pliku UnstableToyFactory.cs)
+   Fabryka zgadza się wyprodukować dowolną zabawkę
+   z prawdopodobieństwem 1/2,
+
+Obie fabryki muszą implementować interfejs IToyFactory (plik ToyFactory.cs)
+oraz dostarczać metody obsługujące zdarzenie MesssageArrived (z klasy SantaPostOffice)
+Obsługa zdarzenia musi wypisywać informację o tym, fabryka zdecydowała się wyprodukować zabawkę
+(oczywiście jesli się zdecydowała).
+
+Metoda BindToPostOffice powoduje zapisanie się na zdarzenie
+MesssageArrived SantaPostOffice, w taki sposób, aby zrealizować
+funkcjonalność danej fabryki.
+
+Odkomentować odpowiedni fragment Main, wykonać program kilkakrotnie,
+aby sprawdzić, że losowość fabryki działa.
+
+###Etap 2 (1 pkt)
+
+Odkomentować metodę UnbindFromPostOffice interfejcu IToyFactory i
+zaimplementować ją w klasach pochodnych. Ta metoda powinna skutkować
+wypisaniem się fabryki ze zdarzenia. 

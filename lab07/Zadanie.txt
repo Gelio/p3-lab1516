@@ -1,0 +1,41 @@
+Zadanie polega na rozszerzeniu prostej biblioteki do obliczeń na macierzach.
+
+Etap 1 (1 punkt)
+
+Należy dla macierzy zaimplementować operator ++. Po jego wykonaniu:
+	- dla macierzy klasy ArrayMatrix wszystkie jej elementy zwiększają się o 1
+	- dla macierzy klasy SparseMatrix wszystkie jej niezerowe elementy zwiększają się o 1
+	  (nie trzeba przejmować się nowymi zerami)
+
+	UWAGA: Implementacje powinny być świadome reprezentacji macierzy i optymalnie wykonywać inkrementację elementów
+
+ETAP 2 (1.5 punktu)
+
+Należy dla macierzy zaimplementować operator * mnożenia przez skalar.
+	- operator zwraca nową macierz tego samego typu co źródłowa z pomnożonymi elementami. Oryginalna macierz się nie zmienia
+	- możliwe jest mnożenie przez skalar z obu stron i daje ono takie same wyniki
+
+	UWAGA: Implementacje powinny być świadome reprezentacji macierzy i optymalnie wykonywać mnożenie elementów
+
+	UWAGA: W implementacji trzeba zachować sensowność dziedziczenia, czyli:
+		- w klasie abstrakcyjnej Matrix nie można używać odniesień do klas ArrayMatrix i SparseMatrix
+		  (klasa bazowa nie wie o swoich klasach pochodnych)
+		- w klasie SparseMatrix nie można używać odniesień do klasy ArrayMatrix i odwrotnie
+		  (klasy pochodne nie wiedzą o sobie nawzajem)
+
+ETAP 3 (2.5 punktu)
+
+Należy zaimplementować operator + dodawania macierzy.
+	- operator zwraca nową macierz, macierze źródłowe się nie zmieniają
+	- jeśli nie da się wykonać dodawania zwraca null
+	- można dodawać do siebie macierze dowolnych typów
+	- dla dwóch macierzy typu SparseMatrix, macierzy wynikowa też jest typu SparseMatrix, w p.p. jest typu ArrayMatrix
+
+	UWAGA: W implementacji trzeba zachować sensowność dziedziczenia, czyli:
+		- w klasie abstrakcyjnej Matrix nie można używać odniesień do klas ArrayMatrix i SparseMatrix
+		  (klasa bazowa nie wie o swoich klasach pochodnych)
+		- w klasie SparseMatrix nie można używać odniesień do klasy ArrayMatrix i odwrotnie
+		  (klasy pochodne nie wiedzą o sobie nawzajem)
+		- implementacja powinna być rozszerzalna, tzn. bez zmiany kodu klas Matrix, ArrayMatrix, SparseMatrix można by
+		  dodać nową klasę pochodną klasy Matrix i nadal iloczyn dwóch obiektów klasy SparseMatrix dałby wynik SparseMatrix
+		  oraz ta nowa klasa nie wie o innych klasach pochodnych Matrix 
