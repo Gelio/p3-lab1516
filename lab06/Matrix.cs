@@ -27,7 +27,11 @@ namespace MatrixLibrary
             Console.WriteLine();
         }
 
-// tu dopisać deklaracje metod abstrakcyjnych Transpose, Max, Min
+        // tu dopisać deklaracje metod abstrakcyjnych Transpose, Max, Min
+
+        public abstract void Transpose();
+        public abstract double Min(out int row, out int column);
+        public abstract double Max(out int row, out int column);
 
     }
 }
