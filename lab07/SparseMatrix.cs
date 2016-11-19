@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace MatrixLibrary
 {
@@ -56,6 +57,74 @@ namespace MatrixLibrary
                     return values[i];
 
             return 0;
+        }
+
+        public override void Increment()
+        {
+            for (int i = 0; i < values.Length; i++)
+                values[i]++;
+        }
+
+        public override Matrix Clone()
+        {
+            int[] clonedRows = new int[rows.Length],
+                clonedColumns = new int[columns.Length];
+            double[] clonedValues = new double[values.Length];
+            for (int i = 0; i < rows.Length; i++)
+                clonedRows[i] = rows[i];
+            for (int i = 0; i < columns.Length; i++)
+                clonedColumns[i] = columns[i];
+            for (int i = 0; i < values.Length; i++)
+                clonedValues[i] = values[i];
+
+            return new SparseMatrix(Rows, Columns, clonedRows, clonedColumns, clonedValues);
+        }
+
+        public override void MultiplyByScalar(double scalar)
+        {
+            for (int i = 0; i < values.Length; i++)
+                values[i] *= scalar;
+        }
+
+        public override void AddMatrix(Matrix m)
+        {
+            for (int i=0; i < nonZeroValues; i++)
+            {
+                int row = rows[i],
+                    column = columns[i];
+                double value = values[i];
+                SetValue(row, column, value + m.GetValue(row, column));
+            }
+        }
+
+        public override void SetValue(int row, int column, double value)
+        {
+            for (int i=0; i < nonZeroValues; i++)
+            {
+                if (rows[i] == row && columns[i] == column)
+                {
+                    values[i] = value;
+                    return;
+                }
+            }
+
+            int[] extendedRows = new int[nonZeroValues + 1],
+                extendedColumns = new int[nonZeroValues + 1];
+            double[] extendedValues = new double[nonZeroValues + 1];
+            for (int i=0; i < nonZeroValues; i++)
+            {
+                extendedRows[i] = rows[i];
+                extendedColumns[i] = columns[i];
+                extendedValues[i] = values[i];
+            }
+            extendedRows[nonZeroValues] = row;
+            extendedColumns[nonZeroValues] = column;
+            extendedValues[nonZeroValues] = value;
+
+            rows = extendedRows;
+            columns = extendedColumns;
+            values = extendedValues;
+            nonZeroValues += 1;
         }
     }
 }
