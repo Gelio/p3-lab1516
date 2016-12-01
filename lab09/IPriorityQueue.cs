@@ -2,7 +2,7 @@
 
 namespace Lab9
 {
-    interface IPriorityQueue<T> where T: struct, IComparable<T>
+    interface IPriorityQueue<T> : ICloneable where T: struct, IComparable<T>
     {
         int Size {
             get;

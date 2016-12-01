@@ -51,6 +51,15 @@ namespace Lab9
             return smallestElement;
         }
 
+        public object Clone()
+        {
+            var clonedQueue = new MinPriorityQueueArray<T>();
+            for (int i = 0; i < Size; i++)
+                clonedQueue.Put(queue[i]);
+
+            return clonedQueue;
+        }
+
         private T[] queue;
         private int existingElements;
     }

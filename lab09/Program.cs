@@ -77,75 +77,75 @@ namespace Lab9
 
         static void TestPriorityQueueArrayClone()
         {
-            //Console.WriteLine("--ETAP 2.2--");
-            //Console.WriteLine("TESTUJE KOLEJKE PRIORYTETOWA");
-            //MinPriorityQueueArray<int> pq = new MinPriorityQueueArray<int>();
-            //bool good = true;
-            //good = good && pq.Size == 0;
-            //Console.WriteLine("ROZMIAR: " + (good ? "PASSED" : "FAILED"));
-            //bool good2 = true;
-            //pq.Put(8);
-            //pq.Put(3);
-            //pq.Put(5);
-            //pq.Put(2);
-            //pq.Put(1);
-            //pq.Put(5);
-            //pq.Put(9);
-            //pq.Put(8);
+            Console.WriteLine("--ETAP 2.2--");
+            Console.WriteLine("TESTUJE KOLEJKE PRIORYTETOWA");
+            MinPriorityQueueArray<int> pq = new MinPriorityQueueArray<int>();
+            bool good = true;
+            good = good && pq.Size == 0;
+            Console.WriteLine("ROZMIAR: " + (good ? "PASSED" : "FAILED"));
+            bool good2 = true;
+            pq.Put(8);
+            pq.Put(3);
+            pq.Put(5);
+            pq.Put(2);
+            pq.Put(1);
+            pq.Put(5);
+            pq.Put(9);
+            pq.Put(8);
 
-            //MinPriorityQueueArray<int> pq2 = (MinPriorityQueueArray<int>)pq.Clone();
+            MinPriorityQueueArray<int> pq2 = (MinPriorityQueueArray<int>)pq.Clone();
 
-            //int[] expected = new int[] { 1, 2, 3, 5, 5, 8, 8, 9 };
+            int[] expected = new int[] { 1, 2, 3, 5, 5, 8, 8, 9 };
 
-            //for (int i = 0; i < expected.Length; i++)
-            //{
-            //    if (pq.Get() != expected[i])
-            //        good2 = false;
-            //}
+            for (int i = 0; i < expected.Length; i++)
+            {
+                if (pq.Get() != expected[i])
+                    good2 = false;
+            }
 
-            //for (int i = 0; i < expected.Length; i++)
-            //{
-            //    if (pq2.Get() != expected[i])
-            //        good2 = false;
-            //}
-            //Console.WriteLine("Wartosci zwracane przez kolejke: " + (good2 ? "PASSED" : "FAILED"));
-            //Console.WriteLine("Ogolny wynik etapu: " + (good && good2 ? "PASSED" : "FAILED"));
+            for (int i = 0; i < expected.Length; i++)
+            {
+                if (pq2.Get() != expected[i])
+                    good2 = false;
+            }
+            Console.WriteLine("Wartosci zwracane przez kolejke: " + (good2 ? "PASSED" : "FAILED"));
+            Console.WriteLine("Ogolny wynik etapu: " + (good && good2 ? "PASSED" : "FAILED"));
         }
 
         static void TestToArray()
         {
-            //Console.WriteLine("--ETAP 2.3--");
-            //Console.WriteLine("TESTUJE KOLEJKE PRIORYTETOWA");
-            //MinPriorityQueueArray<int> pq = new MinPriorityQueueArray<int>();
-            //bool good = true;
-            //good = good && pq.Size == 0;
+            Console.WriteLine("--ETAP 2.3--");
+            Console.WriteLine("TESTUJE KOLEJKE PRIORYTETOWA");
+            MinPriorityQueueArray<int> pq = new MinPriorityQueueArray<int>();
+            bool good = true;
+            good = good && pq.Size == 0;
 
-            //bool good2 = true;
-            //pq.Put(8);
-            //pq.Put(3);
-            //pq.Put(5);
-            //pq.Put(2);
-            //pq.Put(1);
-            //pq.Put(5);
-            //pq.Put(9);
-            //pq.Put(8);
+            bool good2 = true;
+            pq.Put(8);
+            pq.Put(3);
+            pq.Put(5);
+            pq.Put(2);
+            pq.Put(1);
+            pq.Put(5);
+            pq.Put(9);
+            pq.Put(8);
 
-            //int[] expected = new int[] { 1, 2, 3, 5, 5, 8, 8, 9 };
-            //int[] result = pq.ToSortedArray();
+            int[] expected = new int[] { 1, 2, 3, 5, 5, 8, 8, 9 };
+            int[] result = pq.ToSortedArray();
 
-            //if (result.Length != expected.Length)
-            //    good = false;
-            //Console.WriteLine("ROZMIAR TABLICY: " + (good ? "PASSED" : "FAILED"));
-            //if (good)
-            //{
-            //    for (int i = 0; i < expected.Length; i++)
-            //    {
-            //        if (result[i] != expected[i])
-            //            good2 = false;
-            //    }
-            //}
-            //Console.WriteLine("Wartosci w tablicy: " + (good2 ? "PASSED" : "FAILED"));
-            //Console.WriteLine("Ogolny wynik etapu: " + (good && good2 ? "PASSED" : "FAILED"));
+            if (result.Length != expected.Length)
+                good = false;
+            Console.WriteLine("ROZMIAR TABLICY: " + (good ? "PASSED" : "FAILED"));
+            if (good)
+            {
+                for (int i = 0; i < expected.Length; i++)
+                {
+                    if (result[i] != expected[i])
+                        good2 = false;
+                }
+            }
+            Console.WriteLine("Wartosci w tablicy: " + (good2 ? "PASSED" : "FAILED"));
+            Console.WriteLine("Ogolny wynik etapu: " + (good && good2 ? "PASSED" : "FAILED"));
         }
 
         static void Main(string[] args)
