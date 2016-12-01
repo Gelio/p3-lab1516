@@ -2,5 +2,12 @@
 
 namespace Lab9
 {
-// zdefiniować interfejs IPriorityQueue
+    interface IPriorityQueue<T> where T: struct, IComparable<T>
+    {
+        int Size {
+            get;
+        }
+        void Put(T element);
+        T Get();
+    }
 }
