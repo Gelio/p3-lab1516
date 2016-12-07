@@ -23,10 +23,36 @@ namespace lab10a
 
         public static Func<T, T> Add<T>(Func<T, T> f1, Func<T, T> f2)
         {
-            return x => {
+            return x =>
+            {
                 dynamic y1 = f1(x);
                 dynamic y2 = f2(x);
                 return (T)(y1 + y2);
+            };
+        }
+
+        public static Func<int> LosowanieBezZwracania(int lower, int upper, Random random)
+        {
+            int numbersGenerated = 0,
+                numbersToGenerate = upper - lower + 1;
+            bool[] wasGenerated = new bool[numbersToGenerate];
+            for (int i = 0; i < numbersToGenerate; i++)
+                wasGenerated[i] = false;
+            
+            return () =>
+            {
+                if (numbersGenerated == numbersToGenerate)
+                    throw new InvalidOperationException();
+
+                int randomValue;
+                do
+                {
+                    randomValue = lower + random.Next() % (upper - lower + 1);
+                } while (wasGenerated[randomValue - lower]);
+
+                wasGenerated[randomValue - lower] = true;
+                numbersGenerated++;
+                return randomValue;
             };
         }
 	}

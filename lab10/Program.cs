@@ -64,7 +64,7 @@ namespace lab10a
 			
 
             //etap5
-            /*
+            
 			System.Console.Out.WriteLine("Etap5");
 			var lb1 = Functions.LosowanieBezZwracania(0,15,random);
 			var lb2 = Functions.LosowanieBezZwracania(0,15,random);
@@ -73,7 +73,7 @@ namespace lab10a
 			int[] a9 = ArrayMagic.GenerateArray(lb2, 14);
 			PrintArray(a8);
 			PrintArray(a9);
-			*/
+
         }
     }
 }
