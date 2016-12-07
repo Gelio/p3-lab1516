@@ -46,14 +46,15 @@ namespace lab10a
 			
 
             //etap3
-            /*
+            
 			System.Console.Out.WriteLine("Etap3");
 			int sum=0;
 
 			// Wyjaśnienie w treści zadania
-			ArrayMagic.ForEach(ar1, .....);
+			ArrayMagic.ForEach(ar1, number => sum += number);
 			System.Console.Out.WriteLine("Suma: " + sum);
-			*/
+            // Suma liczb z ar1 to 24, a nie 12, jak podane w wyjscie.txt
+			
 
             //etap4
             /*
