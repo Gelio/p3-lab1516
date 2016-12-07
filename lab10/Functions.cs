@@ -5,7 +5,16 @@ namespace lab10a
 {
 	public static class Functions
 	{
-	/* Tu powstan¹ metody: NaturalNumbers, Multiply, Combine, Add, LosowanieBezZwracania*/
+        public static Func<int> NaturalNumbers()
+        {
+            int number = 1;
+            return () => number++;
+        }
+
+        public static Func<double, double> Multiply(double m)
+        {
+            return number => number * m;
+        }
 	}
 }
 

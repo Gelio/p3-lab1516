@@ -35,15 +35,15 @@ namespace lab10a
 			PrintArray(ArrayMagic.GenerateArray(() => random.Next(), 5));
 
             //etap2
-            /*
+            
 			System.Console.Out.WriteLine("Etap2");
-			PrintArray(ArrayMagic.GenerateArray(Functions.NaturalNumbers(), 5));
+			PrintArray(ArrayMagic.GenerateArray<int>(Functions.NaturalNumbers(), 5));
 			PrintArray(ArrayMagic.GenerateArray(Functions.NaturalNumbers(), 5));
 			var m3 = Functions.Multiply(3);
 			var m5 = Functions.Multiply(5);
 			PrintArray(ArrayMagic.TransformArray(ar3, m3));
 			PrintArray(ArrayMagic.TransformArray(ar3, m5));
-			*/
+			
 
             //etap3
             /*
