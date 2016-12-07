@@ -5,14 +5,15 @@ namespace lab10a
 
 	public static class MainClass
 	{
-	    /*
-		public static void PrintArray<T>(T[] array){
-			ArrayMagic.ForEach(array, x => System.Console.Out.Write(x+" "));
-			System.Console.Out.WriteLine ();
-		}
-		*/
 
-		public static void Main (string[] args)
+        public static void PrintArray<T>(T[] array)
+        {
+            ArrayMagic.ForEach(array, x => System.Console.Out.Write(x + " "));
+            System.Console.Out.WriteLine();
+        }
+
+
+        public static void Main (string[] args)
 		{
 			Random random = new Random(41234);
 
@@ -20,21 +21,21 @@ namespace lab10a
 			String[] ar2 = {"a","xyzzy","b","c"};
 			double[] ar3 = {1.1,1.2,1.5,1.9,22};
 
-			// etap1
-			/*
+            // etap1
+            
 			System.Console.Out.WriteLine("Etap1");
 			PrintArray(ar1);
 			PrintArray(ar2);
 
+            
 			// Drugim parametrem ma być delegacja która zwraca wartość swojego argumentu powiększoną o 2
-			PrintArray(ArrayMagic.TransformArray(ar1, .....));
+			PrintArray(ArrayMagic.TransformArray(ar1, element => element+2));
 
 			// Pierwszym argumentem ma być delegacja na metodę Next obiektu random
-			PrintArray(ArrayMagic.GenerateArray(...., 5));
-			*/
-			
-			//etap2
-			/*
+			PrintArray(ArrayMagic.GenerateArray(() => random.Next(), 5));
+
+            //etap2
+            /*
 			System.Console.Out.WriteLine("Etap2");
 			PrintArray(ArrayMagic.GenerateArray(Functions.NaturalNumbers(), 5));
 			PrintArray(ArrayMagic.GenerateArray(Functions.NaturalNumbers(), 5));
@@ -43,9 +44,9 @@ namespace lab10a
 			PrintArray(ArrayMagic.TransformArray(ar3, m3));
 			PrintArray(ArrayMagic.TransformArray(ar3, m5));
 			*/
-			
-			//etap3
-			/*
+
+            //etap3
+            /*
 			System.Console.Out.WriteLine("Etap3");
 			int sum=0;
 
@@ -54,15 +55,15 @@ namespace lab10a
 			System.Console.Out.WriteLine("Suma: " + sum);
 			*/
 
-			//etap4
-			/*
+            //etap4
+            /*
 			System.Console.Out.WriteLine("Etap4");
 			PrintArray(ArrayMagic.TransformArray(ar3,Functions.Combine(m3,m5)));
 			PrintArray(ArrayMagic.TransformArray(ar3,Functions.Add(m3,m5)));
 			*/
 
-			//etap5
-			/*
+            //etap5
+            /*
 			System.Console.Out.WriteLine("Etap5");
 			var lb1 = Functions.LosowanieBezZwracania(0,15,random);
 			var lb2 = Functions.LosowanieBezZwracania(0,15,random);
@@ -72,6 +73,6 @@ namespace lab10a
 			PrintArray(a8);
 			PrintArray(a9);
 			*/
-		}
-	}
+        }
+    }
 }
