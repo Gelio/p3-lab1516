@@ -15,6 +15,20 @@ namespace lab10a
         {
             return number => number * m;
         }
+
+        public static Func<T, T> Combine<T>(Func<T, T> f1, Func<T, T> f2)
+        {
+            return x => f1(f2(x));
+        }
+
+        public static Func<T, T> Add<T>(Func<T, T> f1, Func<T, T> f2)
+        {
+            return x => {
+                dynamic y1 = f1(x);
+                dynamic y2 = f2(x);
+                return (T)(y1 + y2);
+            };
+        }
 	}
 }
 

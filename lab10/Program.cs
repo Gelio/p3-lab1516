@@ -57,11 +57,11 @@ namespace lab10a
 			
 
             //etap4
-            /*
+            
 			System.Console.Out.WriteLine("Etap4");
 			PrintArray(ArrayMagic.TransformArray(ar3,Functions.Combine(m3,m5)));
 			PrintArray(ArrayMagic.TransformArray(ar3,Functions.Add(m3,m5)));
-			*/
+			
 
             //etap5
             /*
