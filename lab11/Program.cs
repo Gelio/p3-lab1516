@@ -12,7 +12,7 @@ namespace Lab11a
 				new Message("Barbie", "Doll"), new Message("Ken", "Doll"), new Message("The Fellowship of the Ring", "Book")};
 
 
-			/*
+			
 			System.Console.Out.WriteLine ("Etap1");
 
 			IToyFactory unstable = new UnstableToyFactory ();
@@ -24,7 +24,7 @@ namespace Lab11a
 				santaPostOffice.ReceiveMessage (message);
 			}
 
-			System.Console.Out.WriteLine ();*/
+			System.Console.Out.WriteLine ();
 			/*System.Console.Out.WriteLine ("Etap2");
 
 			unstable.UnbindFromPostOffice (santaPostOffice);
