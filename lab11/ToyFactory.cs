@@ -8,7 +8,7 @@ namespace Lab11a
 		void BindToPostOffice(SantaPostOffice spo);
 
 		// Etap 2
-		//void UnbindFromPostOffice(SantaPostOffice spo);
+		void UnbindFromPostOffice(SantaPostOffice spo);
 	}    
 }
 

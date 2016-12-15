@@ -18,5 +18,10 @@ namespace Lab11a
             Console.WriteLine("UnstableToyFactory: Building toy: " + message.PresentName);
             return true;
         }
+
+        public void UnbindFromPostOffice(SantaPostOffice spo)
+        {
+            spo.MailArrived -= _handleMessage;
+        }
     }
 }

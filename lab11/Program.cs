@@ -25,28 +25,31 @@ namespace Lab11a
 			}
 
 			System.Console.Out.WriteLine ();
-			/*System.Console.Out.WriteLine ("Etap2");
+            System.Console.Out.WriteLine("Etap2");
 
-			unstable.UnbindFromPostOffice (santaPostOffice);
+            unstable.UnbindFromPostOffice(santaPostOffice);
 
-			System.Console.Out.WriteLine ("Tylko doll");
-			foreach(Message message in messages) {
-				santaPostOffice.ReceiveMessage (message);
-			}
+            System.Console.Out.WriteLine("Tylko doll");
+            foreach (Message message in messages)
+            {
+                santaPostOffice.ReceiveMessage(message);
+            }
 
-			doll.UnbindFromPostOffice (santaPostOffice);
+            doll.UnbindFromPostOffice(santaPostOffice);
 
-			System.Console.Out.WriteLine ("nic");
-			foreach(Message message in messages) {
-				santaPostOffice.ReceiveMessage (message);
-			}
+            System.Console.Out.WriteLine("nic");
+            foreach (Message message in messages)
+            {
+                santaPostOffice.ReceiveMessage(message);
+            }
 
-			unstable.BindToPostOffice (santaPostOffice);
-			System.Console.Out.WriteLine ("Tylko unstable");
-			foreach(Message message in messages) {
-				santaPostOffice.ReceiveMessage (message);
-			}*/
+            unstable.BindToPostOffice(santaPostOffice);
+            System.Console.Out.WriteLine("Tylko unstable");
+            foreach (Message message in messages)
+            {
+                santaPostOffice.ReceiveMessage(message);
+            }
 
-		}
+        }
 	}
 }
