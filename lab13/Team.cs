@@ -31,7 +31,11 @@ namespace Lab13
 
         public Team(int teamMembersCount)
         {
-            // E1 - zaimplementowac
+            id = GetIndex();
+            name = "Team_" + id;
+            players = new List<Player>(teamMembersCount);
+            for (int i = 0; i < teamMembersCount; i++)
+                AddPlayer(new Player());
         }
         private Team(string[] teamDetails)
         {
@@ -41,7 +45,8 @@ namespace Lab13
 
         public void AddPlayer(Player p)
         {
-            // E1 - zaimplementowac
+            players.Add(p);
+            teamScore += p.Score;
         }
 
         public override string ToString()

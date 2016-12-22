@@ -18,7 +18,9 @@ namespace Lab13
 
         public Ranking(int teamCount, int teamMembersCount)
         {
-            // E1 - zaimplementowac
+            teams = new SortedSet<Team>(new TeamComparer());
+            for (int i = 0; i < teamCount; i++)
+                AddNewTeam(teamMembersCount);
         }
 
         private Ranking(string[] teamRecordsData)
