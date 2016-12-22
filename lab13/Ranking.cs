@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
@@ -64,10 +65,18 @@ namespace Lab13
         // ETAP 4
         public string ToText()
         {
-            // E4 - zaimplementowac
-            // format powinien być następujący: 
-            // Team.ToText();Team.ToText();...
-            return null;
+            StringBuilder sb = new StringBuilder();
+            bool isFirst = true;
+            foreach (var team in teams)
+            {
+                if (!isFirst)
+                    sb.Append(";");
+                    
+                sb.Append(team.ToText());
+                isFirst = false;
+            }
+                
+            return sb.ToString();
         }
 
         // ETAP 5

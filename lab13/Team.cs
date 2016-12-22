@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using System.Text;
 
 namespace Lab13
 {
@@ -71,9 +72,12 @@ namespace Lab13
         // ETAP 4
         public string ToText()
         {
-            // E4 - zaimplementowac
-            // format Id,Player.ToText(),Player.ToText()
-            return null;
+            StringBuilder sb = new StringBuilder();
+            sb.Append(id);
+            foreach (var player in players)
+                sb.AppendFormat(",{0}", player.ToText());
+                
+            return sb.ToString();
         }
 
         // ETAP 5

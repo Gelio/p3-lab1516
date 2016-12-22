@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using System.Text;
 
 namespace Lab13
 {
@@ -62,9 +63,7 @@ namespace Lab13
         // ETAP 4
         public string ToText()
         {
-            // E4 - zaimplementowac
-            // format powinien być: id|nickname|age|score
-            return null;
+            return string.Format("{0}|{1}|{2}|{3}", id, nickname, age, score);
         }
 
         // ETAP 5
