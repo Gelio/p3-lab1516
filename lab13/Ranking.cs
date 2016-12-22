@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace Lab13
 {
-    class Ranking : IDisposable
+    [Serializable] class Ranking : IDisposable
     {
-        public class TeamComparer : IComparer<Team>
+        [Serializable] public class TeamComparer : IComparer<Team>
         {
             public int Compare(Team x, Team y)
             {

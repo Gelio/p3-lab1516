@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Lab13
 {
@@ -8,12 +9,16 @@ namespace Lab13
         public static MemoryStream SerializeBinary(Ranking ranking)
         {
             // E2 - zaimplementowac
-            return null;
+            MemoryStream ms = new MemoryStream();
+            BinaryFormatter binaryFormatter = new BinaryFormatter();
+            binaryFormatter.Serialize(ms, ranking);
+            ms.Seek(0, SeekOrigin.Begin);
+            return ms;
         }
         public static Ranking DeserializeBinary(MemoryStream stream)
         {
-            // E2 - zaimplementowac
-            return null;
+            BinaryFormatter binaryFormatter = new BinaryFormatter();
+            return (Ranking)binaryFormatter.Deserialize(stream);
         }
 
         // ETAP 3

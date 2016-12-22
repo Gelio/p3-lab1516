@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace Lab13
 {
-    class Team
+    [Serializable] class Team
     {
         private static int maxId = 0;
         private string name;

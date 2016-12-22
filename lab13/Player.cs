@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace Lab13
 {
-    class Player
+    [Serializable] class Player
     {
         private static int NAME_LENGTH = 3;
         private static Random rand = new Random(0);
