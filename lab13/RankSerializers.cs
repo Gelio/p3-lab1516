@@ -2,6 +2,7 @@
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization.Formatters.Soap;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Lab13
 {
@@ -69,14 +70,16 @@ namespace Lab13
         // ETAP 5 - serializacja do pliku tekstowego w formacie podanym w treści zadania
         public static void SerializeOwn(Ranking ranking, Stream stream)
         {
-            // E5 - zaimplementowac
-            // do wygenerowania tekstu do zapisu należy wywołać jedynie metodę ranking.ToText()
+            byte[] bytes = new UTF8Encoding().GetBytes(ranking.ToText());
+            stream.Write(bytes, 0, bytes.Length);
+            stream.Seek(0, SeekOrigin.Begin);
         }
         public static Ranking DeserializeOwn(Stream stream)
         {
-            // E5 - zaimplementowac
-            // należy użyć metody Ranking.FromText();
-            return null;
+            byte[] bytes = new byte[stream.Length];
+            stream.Read(bytes, 0, bytes.Length);
+
+            return Ranking.FromText(Encoding.UTF8.GetString(bytes));
         }
     }
 }

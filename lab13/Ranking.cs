@@ -34,8 +34,9 @@ namespace Lab13
 
         private Ranking(string[] teamRecordsData)
         {
-            // E5 - zaimplementowac
-            // do tworzenia obiektów druzyn należy wykorzystać statyczną metodę Team.FromText(string)
+            teams = new SortedSet<Team>(new TeamComparer());
+            foreach (string teamData in teamRecordsData)
+                teams.Add(Team.FromText(teamData));
         }
 
         public Team AddNewTeam(int teamMembersCount)
@@ -82,10 +83,7 @@ namespace Lab13
         // ETAP 5
         public static Ranking FromText(string data)
         {
-            // E5 - zaimplementowac
-            // metoda powinna stworzyć nowy obiekt Ranking na podstawie otrzymanego napisu,
-            // do stworzenia nowego obiektu Ranking nalezy uzyc prywatnego konstruktora
-            return null;
+            return new Ranking(data.Split(';'));
         }
     }
 }

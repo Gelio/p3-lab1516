@@ -53,7 +53,7 @@ namespace Lab13
             this.score = rand.Next() % 1000;
         }
         private Player(int id) {
-            // E5 - zaimplementowac
+            this.id = id;
         }
         public override string ToString()
         {
@@ -69,9 +69,12 @@ namespace Lab13
         // ETAP 5
         static public Player FromText(string playerDetailsString)
         {
-            // E5 - zaimplementowac
-            // przy tworzeniu nowego obiektu Player użyc prywatnej wersji konstruktora
-            return null;
+            string[] playerParts = playerDetailsString.Split('|');
+            Player player = new Player(int.Parse(playerParts[0]));
+            player.nickname = playerParts[1];
+            player.age = int.Parse(playerParts[2]);
+            player.score = int.Parse(playerParts[3]);
+            return player;
         }
     }
 }

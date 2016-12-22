@@ -46,12 +46,26 @@ namespace Lab13
             this.id = id;
             this.name = name;
             this.players = new List<Player>();
+            if (id > maxId)
+                maxId = id;
         }
 
         private Team(string[] teamDetails)
         {
-            // E5 - zaimplementowac
-            // przy tworzeniu nowych obietow Player uzyc Player.FromText
+            id = int.Parse(teamDetails[0]);
+            name = "Team_" + id;
+
+            players = new List<Player>(teamDetails.Length - 1);
+            for (int i = 1; i < teamDetails.Length; i++)
+            {
+                Player player = Player.FromText(teamDetails[i]);
+                players.Add(player);
+                teamScore += player.Score;
+            }
+                
+
+            if (id > maxId)
+                maxId = id;
         }
 
         public void AddPlayer(Player p)
@@ -83,9 +97,7 @@ namespace Lab13
         // ETAP 5
         static public Team FromText(string teamRecordData)
         {
-            // E5 zaimplementowac
-            // do tworzenia nowego obiektu Team uzyc prywatnego konstruktora
-            return null;
+            return new Team(teamRecordData.Split(','));
         }
 }
 }
