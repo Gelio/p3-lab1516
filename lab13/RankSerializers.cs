@@ -1,5 +1,7 @@
 ﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization.Formatters.Soap;
+using System.Collections.Generic;
 
 namespace Lab13
 {
@@ -24,12 +26,44 @@ namespace Lab13
         // ETAP 3
         public static void SerializeSOAP(Ranking ranking, string path)
         {
-            // E3 - zaimplementowac
+            FileStream fs = new FileStream(path, FileMode.Create);
+            SoapFormatter soapFormatter = new SoapFormatter();
+            soapFormatter.Serialize(fs, ranking.Teams.Count);
+            foreach (var team in ranking.Teams)
+            {
+                soapFormatter.Serialize(fs, team.Id);
+                soapFormatter.Serialize(fs, team.Name);
+                soapFormatter.Serialize(fs, team.Players.Count);
+                foreach (var player in team.Players)
+                    soapFormatter.Serialize(fs, player);
+            }
+            fs.Close();
         }
         public static Ranking DeserializeSOAP(string path)
         {
-            // E3 - zaimplementowac
-            return null;
+            FileStream fs = new FileStream(path, FileMode.Open);
+            SoapFormatter soapFormatter = new SoapFormatter();
+            int teamsAmount = (int)soapFormatter.Deserialize(fs);
+
+            List<Team> teams = new List<Team>(teamsAmount);
+            for (int i=0; i < teamsAmount; i++)
+            {
+                int teamId = (int)soapFormatter.Deserialize(fs);
+                string teamName = (string)soapFormatter.Deserialize(fs);
+                Team team = new Team(teamId, teamName);
+
+                int playersCount = (int)soapFormatter.Deserialize(fs);
+                for (int j=0; j < playersCount; j++)
+                {
+                    Player player = soapFormatter.Deserialize(fs) as Player;
+                    team.AddPlayer(player);
+                }
+                
+                teams.Add(team);
+            }
+            
+            fs.Close();
+            return new Ranking(teams);
         }
 
         // ETAP 5 - serializacja do pliku tekstowego w formacie podanym w treści zadania

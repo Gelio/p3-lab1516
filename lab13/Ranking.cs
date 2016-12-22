@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
@@ -16,12 +17,18 @@ namespace Lab13
             }
         }
         private SortedSet<Team> teams= new SortedSet<Team>(new TeamComparer());
+        public SortedSet<Team> Teams => teams;
 
         public Ranking(int teamCount, int teamMembersCount)
         {
             teams = new SortedSet<Team>(new TeamComparer());
             for (int i = 0; i < teamCount; i++)
                 AddNewTeam(teamMembersCount);
+        }
+
+        public Ranking(List<Team> teams)
+        {
+            this.teams = new SortedSet<Team>(teams, new TeamComparer());
         }
 
         private Ranking(string[] teamRecordsData)

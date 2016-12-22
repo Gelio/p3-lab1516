@@ -12,6 +12,7 @@ namespace Lab13
         
         private List<Player> players;
 
+        public int Id => id;
         public string Name
         {
             get { return name; }
@@ -38,6 +39,14 @@ namespace Lab13
             for (int i = 0; i < teamMembersCount; i++)
                 AddPlayer(new Player());
         }
+
+        public Team(int id, string name)
+        {
+            this.id = id;
+            this.name = name;
+            this.players = new List<Player>();
+        }
+
         private Team(string[] teamDetails)
         {
             // E5 - zaimplementowac
