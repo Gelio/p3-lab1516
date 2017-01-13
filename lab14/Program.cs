@@ -251,9 +251,15 @@ namespace Linq
             Console.WriteLine("------2.6---------");
 
             //2.6 Wybierz osoby, ktore maja co najmniej jedna ocene 2.0, a nastepnie wypisz ich zarobki. Jesli osoby nie ma w bazie danych obywateli, przypisz 0 w zarobkach. 1p
-            //var seq6 // wynik;
-            //foreach (var os in seq6)
-            //    Console.WriteLine("{0} {1} {2}", os.Name, os.Surname, os.Salary);
+            var seq6 = from student in students
+                       join grade in grades on student.IndexNo equals grade.IndexNo into studentsGrades
+                       where studentsGrades.Min(grade => grade.Grade) == 2
+                       join obywatel in citizens on student.PESEL equals obywatel.PESEL into obywatele
+                       let salary = obywatele.ToList().Count > 0 ? obywatele.First().Salary : 0
+                       select new { Name = student.Name, Surname = student.Surname, Salary = salary };
+
+            foreach (var os in seq6)
+                Console.WriteLine("{0} {1} {2}", os.Name, os.Surname, os.Salary);
 
             Console.WriteLine();
             Console.WriteLine("Powinno być:");
