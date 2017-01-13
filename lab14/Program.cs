@@ -68,13 +68,13 @@ namespace Linq
             foreach (var p in points2DOrderedByTangens)
                 Console.WriteLine("({0:F2}, {1:F2})", p.X, p.Y);
             Console.WriteLine("-------1.4------");
-            
+
             //1.4 Wybierz punkty z ciągu Fibonacciego (ciąg nieskonczony, zwracany przez funkcje FibonacciNumbers()), 
             //ktore sa wieksze niz 100, mniejsze niz 1000 oraz sa nieparzyste 0.5p
-            //var fn = null; //tutaj ma sie znalezc wynik
+            var fn = FibonacciNumbers().SkipWhile(x => x <= 100).TakeWhile(x => x < 1000).Where(x => x % 2 == 1);
 
-            //foreach (var num in fn)
-            //    Console.WriteLine("{0}, ", num);
+            foreach (var num in fn)
+                Console.WriteLine("{0}, ", num);
 
             Console.WriteLine();
             Console.WriteLine("Powinno być:");
