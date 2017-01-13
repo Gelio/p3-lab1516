@@ -58,15 +58,15 @@ namespace Linq
             Console.WriteLine("minX: 0,22, maxX: 98,46, minY: 7,22, maxY: 93,17");
             Console.WriteLine("-------1.3---------");
 
-            
-            //int n = points2D.Count;
-            //for (int i = 0; i < n; i++)
-            //    points2D.Add(new Point2D(2*points2D[i].X, 2*points2D[i].Y));
+
+            int n = points2D.Count;
+            for (int i = 0; i < n; i++)
+                points2D.Add(new Point2D(2 * points2D[i].X, 2 * points2D[i].Y));
 
             //1.3 sortuj najpierw po tangensie, jaki tworzy kat wektora z osia X (rosnaco), a nastepnie po odleglosci od poczatku ukladu wspolrzednych (malejaco) 0.5p
-            List<Point2D> points2DOrderedByTangens = null; //tutaj ma sie znalezc wynik
-            //foreach (var p in points2DOrderedByTangens)
-            //    Console.WriteLine("({0:F2}, {1:F2})", p.X, p.Y);
+            List<Point2D> points2DOrderedByTangens = points2D.OrderBy(point => (point.X / point.Y)).ThenByDescending(point => (point.X * point.X + point.Y * point.Y)).ToList();
+            foreach (var p in points2DOrderedByTangens)
+                Console.WriteLine("({0:F2}, {1:F2})", p.X, p.Y);
             Console.WriteLine("-------1.4------");
             
             //1.4 Wybierz punkty z ciągu Fibonacciego (ciąg nieskonczony, zwracany przez funkcje FibonacciNumbers()), 
