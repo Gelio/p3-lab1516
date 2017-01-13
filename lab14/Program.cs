@@ -42,14 +42,14 @@ namespace Linq
             Console.WriteLine("-----------1.1 i 1.2----------");
             List<double> xCoordinates = generateCoordinates(pointsCount);
             List<double> yCoordinates = generateCoordinates(pointsCount);
-            
-            //1.1 Wygeneruj liste punktow na podstawie tablic ze wspolrzednymi, 0p (punktowane, gdy zrobione razem z 1.2)
-            List<Point2D> points2D = null; //tutaj ma sie znalezc wynik
 
-            double minX = 0; //tutaj ma sie znalezc wynik
-            double maxX = 0; //tutaj ma sie znalezc wynik
-            double minY = 0; //tutaj ma sie znalezc wynik
-            double maxY = 0; //tutaj ma sie znalezc wynik
+            //1.1 Wygeneruj liste punktow na podstawie tablic ze wspolrzednymi, 0p (punktowane, gdy zrobione razem z 1.2)
+            List<Point2D> points2D = xCoordinates.Select((x, i) => new Point2D(x, yCoordinates[i])).ToList();
+
+            double minX = points2D.Min(point => point.X);
+            double maxX = points2D.Max(point => point.X);
+            double minY = points2D.Min(point => point.Y);
+            double maxY = points2D.Max(point => point.Y);
             
             //1.2 oblicz minimum bounding box (minimalny prostokat okalajacy), 0.5p
 
