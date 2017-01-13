@@ -194,10 +194,16 @@ namespace Linq
             Console.WriteLine("------2.3--------");
 
             //2.3 Na podstawie numeru PESEL wybierz obywateli, ktorzy maja rocznikowo 23 lata, 0.5p
-            //var seq3 // wynik;
+            var seq3 = from obywatel in citizens
+                       let dwucyfrowyRok = int.Parse(obywatel.PESEL.Substring(0, 2))
+                       let pelnyRok = dwucyfrowyRok < 100 ? (1900 + dwucyfrowyRok) : (2000 + dwucyfrowyRok)
+                       let wiek = 2016 - pelnyRok // wtedy był 2016 :D
+                       where wiek > 23
+                       select new { Imie = obywatel.Name, Nazwisko = obywatel.Surname, PESEL = obywatel.PESEL, wiek = wiek};
 
-            //foreach (var os in seq3)
-            //    Console.WriteLine("{0} {1} {2} {3}", os.Imie, os.Nazwisko, os.PESEL, os.wiek);
+
+            foreach (var os in seq3)
+                Console.WriteLine("{0} {1} {2} {3}", os.Imie, os.Nazwisko, os.PESEL, os.wiek);
 
             Console.WriteLine();
             Console.WriteLine("Powinno być:");
