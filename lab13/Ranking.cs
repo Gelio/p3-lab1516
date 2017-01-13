@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Text;
+using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace Lab13
 {
-    class Ranking : IDisposable
+    [Serializable] class Ranking : IDisposable
     {
-        public class TeamComparer : IComparer<Team>
+        [Serializable] public class TeamComparer : IComparer<Team>
         {
             public int Compare(Team x, Team y)
             {
@@ -15,6 +18,7 @@ namespace Lab13
             }
         }
         private SortedSet<Team> teams= new SortedSet<Team>(new TeamComparer());
+        public SortedSet<Team> Teams => teams;
 
         public Ranking(int teamCount, int teamMembersCount)
         {
@@ -23,10 +27,16 @@ namespace Lab13
                 AddNewTeam(teamMembersCount);
         }
 
+        public Ranking(List<Team> teams)
+        {
+            this.teams = new SortedSet<Team>(teams, new TeamComparer());
+        }
+
         private Ranking(string[] teamRecordsData)
         {
-            // E5 - zaimplementowac
-            // do tworzenia obiektów druzyn należy wykorzystać statyczną metodę Team.FromText(string)
+            teams = new SortedSet<Team>(new TeamComparer());
+            foreach (string teamData in teamRecordsData)
+                teams.Add(Team.FromText(teamData));
         }
 
         public Team AddNewTeam(int teamMembersCount)
@@ -56,19 +66,24 @@ namespace Lab13
         // ETAP 4
         public string ToText()
         {
-            // E4 - zaimplementowac
-            // format powinien być następujący: 
-            // Team.ToText();Team.ToText();...
-            return null;
+            StringBuilder sb = new StringBuilder();
+            bool isFirst = true;
+            foreach (var team in teams)
+            {
+                if (!isFirst)
+                    sb.Append(";");
+                    
+                sb.Append(team.ToText());
+                isFirst = false;
+            }
+                
+            return sb.ToString();
         }
 
         // ETAP 5
         public static Ranking FromText(string data)
         {
-            // E5 - zaimplementowac
-            // metoda powinna stworzyć nowy obiekt Ranking na podstawie otrzymanego napisu,
-            // do stworzenia nowego obiektu Ranking nalezy uzyc prywatnego konstruktora
-            return null;
+            return new Ranking(data.Split(';'));
         }
     }
 }

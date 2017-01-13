@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Text;
 
 namespace Lab13
 {
-    class Team
+    [Serializable] class Team
     {
         private static int maxId = 0;
         private string name;
@@ -11,6 +13,7 @@ namespace Lab13
         
         private List<Player> players;
 
+        public int Id => id;
         public string Name
         {
             get { return name; }
@@ -37,10 +40,32 @@ namespace Lab13
             for (int i = 0; i < teamMembersCount; i++)
                 AddPlayer(new Player());
         }
+
+        public Team(int id, string name)
+        {
+            this.id = id;
+            this.name = name;
+            this.players = new List<Player>();
+            if (id > maxId)
+                maxId = id;
+        }
+
         private Team(string[] teamDetails)
         {
-            // E5 - zaimplementowac
-            // przy tworzeniu nowych obietow Player uzyc Player.FromText
+            id = int.Parse(teamDetails[0]);
+            name = "Team_" + id;
+
+            players = new List<Player>(teamDetails.Length - 1);
+            for (int i = 1; i < teamDetails.Length; i++)
+            {
+                Player player = Player.FromText(teamDetails[i]);
+                players.Add(player);
+                teamScore += player.Score;
+            }
+                
+
+            if (id > maxId)
+                maxId = id;
         }
 
         public void AddPlayer(Player p)
@@ -61,17 +86,18 @@ namespace Lab13
         // ETAP 4
         public string ToText()
         {
-            // E4 - zaimplementowac
-            // format Id,Player.ToText(),Player.ToText()
-            return null;
+            StringBuilder sb = new StringBuilder();
+            sb.Append(id);
+            foreach (var player in players)
+                sb.AppendFormat(",{0}", player.ToText());
+                
+            return sb.ToString();
         }
 
         // ETAP 5
         static public Team FromText(string teamRecordData)
         {
-            // E5 zaimplementowac
-            // do tworzenia nowego obiektu Team uzyc prywatnego konstruktora
-            return null;
+            return new Team(teamRecordData.Split(','));
         }
 }
 }

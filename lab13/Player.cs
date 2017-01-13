@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Runtime.Serialization;
+using System.Text;
 
 namespace Lab13
 {
-    class Player
+    [Serializable] class Player
     {
         private static int NAME_LENGTH = 3;
         private static Random rand = new Random(0);
@@ -51,7 +53,7 @@ namespace Lab13
             this.score = rand.Next() % 1000;
         }
         private Player(int id) {
-            // E5 - zaimplementowac
+            this.id = id;
         }
         public override string ToString()
         {
@@ -61,17 +63,18 @@ namespace Lab13
         // ETAP 4
         public string ToText()
         {
-            // E4 - zaimplementowac
-            // format powinien być: id|nickname|age|score
-            return null;
+            return string.Format("{0}|{1}|{2}|{3}", id, nickname, age, score);
         }
 
         // ETAP 5
         static public Player FromText(string playerDetailsString)
         {
-            // E5 - zaimplementowac
-            // przy tworzeniu nowego obiektu Player użyc prywatnej wersji konstruktora
-            return null;
+            string[] playerParts = playerDetailsString.Split('|');
+            Player player = new Player(int.Parse(playerParts[0]));
+            player.nickname = playerParts[1];
+            player.age = int.Parse(playerParts[2]);
+            player.score = int.Parse(playerParts[3]);
+            return player;
         }
     }
 }
