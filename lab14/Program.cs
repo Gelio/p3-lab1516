@@ -162,9 +162,12 @@ namespace Linq
             };
 
             //2.1 wybierz osoby (imie i nazwisko), ktore sa w obu bazach danych (studenci i obywatele) 0.5p
-            //var seq1; // wynik
-            //foreach (var os in seq1)
-            //    Console.WriteLine("{0} {1}", os.Imie, os.Nazwisko);
+            var seq1 = from student in students
+                       join obywatel in citizens
+                       on student.PESEL equals obywatel.PESEL
+                       select new { Imie = obywatel.Name, Nazwisko = obywatel.Surname };
+            foreach (var os in seq1)
+                Console.WriteLine("{0} {1}", os.Imie, os.Nazwisko);
 
             Console.WriteLine();
             Console.WriteLine("Powinno być:");
