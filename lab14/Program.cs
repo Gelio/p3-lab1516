@@ -163,8 +163,7 @@ namespace Linq
 
             //2.1 wybierz osoby (imie i nazwisko), ktore sa w obu bazach danych (studenci i obywatele) 0.5p
             var seq1 = from student in students
-                       join obywatel in citizens
-                       on student.PESEL equals obywatel.PESEL
+                       join obywatel in citizens on student.PESEL equals obywatel.PESEL
                        select new { Imie = obywatel.Name, Nazwisko = obywatel.Surname };
             foreach (var os in seq1)
                 Console.WriteLine("{0} {1}", os.Imie, os.Nazwisko);
@@ -178,10 +177,14 @@ namespace Linq
 
             //2.2 Policz ile numerow telefonow ma kazdy obywatel, wybierz 3 obywateli z najwieksza liczba numerow telefonow, 0.5p
             //zwracana klasa powinna zawierac imie, nazwisko, pesel i liczbe telefonow
-            //var seq2; // wynik
+            var seq2 = (from obywatel in citizens
+                       join phone in phones on obywatel.PESEL equals phone.PESEL into phoneNumbers
+                       orderby phoneNumbers.Count() descending
+                       select new { Imie = obywatel.Name, Nazwisko = obywatel.Surname, PESEL = obywatel.PESEL, Count = phoneNumbers.Count() })
+                       .Take(3);
 
-            //foreach (var os in seq2)
-            //    Console.WriteLine("{0} {1} {2} {3}", os.Imie, os.Nazwisko, os.PESEL, os.Count);
+            foreach (var os in seq2)
+                Console.WriteLine("{0} {1} {2} {3}", os.Imie, os.Nazwisko, os.PESEL, os.Count);
 
             Console.WriteLine();
             Console.WriteLine("Powinno być:");
