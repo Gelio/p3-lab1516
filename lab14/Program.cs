@@ -214,7 +214,11 @@ namespace Linq
 
             // 2.4 Stworz srednia ocen w rozbiciu na płcie. Oznacza to, 
             //ze nalezy policzyc srednia ocen osobno dla kobiet, a osobno dla mezczyzn, 0.5p
-            //var seq4 // wynik;
+            //var seq4 = from student in students
+            //           join grade in grades on student.IndexNo equals grade.IndexNo into studentsGrades
+            //           let average = studentsGrades.Average(grade => grade.Grade)
+            //           //group student by student.Gender into genderAverages
+            //           select new { Gender = student.Gender, Average = average };
 
             //foreach (var os in seq4)
             //    Console.WriteLine("{0} {1} ", os.Gender ? "Mezczyzni" : "Kobiety", os.Average);
@@ -227,10 +231,15 @@ namespace Linq
 
             //2.5 Wybierz numery telefonow osob, ktore zarabiaja wiecej (nieostro) niz 5000. Posortuj po zarobkach malejaco, wybierz pierwsze 5. 
             //Na liscie moze znalezc sie wiele telefonow do tego samego czlowieka 0.5p
-            //var seq5;
+            var seq5 = (from obywatel in citizens
+                        where obywatel.Salary >= 5000
+                        orderby obywatel.Salary descending
+                        join phone in phones on obywatel.PESEL equals phone.PESEL
+                        select new { Salary = obywatel.Salary, Phone = phone.Phone })
+                       .Take(5);
 
-            //foreach (var os in seq5)
-            //    Console.WriteLine("{0} {1} ", os.Salary, os.Phone);
+            foreach (var os in seq5)
+                Console.WriteLine("{0} {1} ", os.Salary, os.Phone);
 
             Console.WriteLine();
             Console.WriteLine("Powinno być:");
