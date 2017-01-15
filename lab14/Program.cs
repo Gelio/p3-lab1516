@@ -50,7 +50,7 @@ namespace Linq
             double maxX = points2D.Max(point => point.X);
             double minY = points2D.Min(point => point.Y);
             double maxY = points2D.Max(point => point.Y);
-            
+
             //1.2 oblicz minimum bounding box (minimalny prostokat okalajacy), 0.5p
 
             Console.WriteLine("minX: {0:F2}, maxX: {1:F2}, minY: {2:F2}, maxY: {3:F2}", minX, maxX, minY, maxY);
@@ -111,7 +111,7 @@ namespace Linq
                 new GradeInfo("634141", 3.0, "AiSD"),
                 new GradeInfo("634141", 5.0, "MD2"),
                 new GradeInfo("634141", 4.0, "C++"),
-                
+
                 new GradeInfo("634142", 5.0, "AiSD"),
                 new GradeInfo("634142", 5.0, "MD2"),
                 new GradeInfo("634142", 4.0, "C++"),
@@ -131,7 +131,7 @@ namespace Linq
                 new GradeInfo("634145", 2.0, "AiSD"),
                 new GradeInfo("634145", 2.0, "MD2"),
                 new GradeInfo("634145", 3.0, "C++"),
-                
+
                 new GradeInfo("634147", 5.0, "AiSD"),
                 new GradeInfo("634147", 5.0, "MD2"),
                 new GradeInfo("634147", 5.0, "C++"),
@@ -151,7 +151,7 @@ namespace Linq
                 new PhoneNumber("94090905435","111-124-222"),
 
                 new PhoneNumber("89112805438","111-111-111"),
-                
+
                 new PhoneNumber("89102905438","111-177-111"),
                 new PhoneNumber("89102905438","111-551-222"),
                 new PhoneNumber("89102905438","111-561-222"),
@@ -178,9 +178,9 @@ namespace Linq
             //2.2 Policz ile numerow telefonow ma kazdy obywatel, wybierz 3 obywateli z najwieksza liczba numerow telefonow, 0.5p
             //zwracana klasa powinna zawierac imie, nazwisko, pesel i liczbe telefonow
             var seq2 = (from obywatel in citizens
-                       join phone in phones on obywatel.PESEL equals phone.PESEL into phoneNumbers
-                       orderby phoneNumbers.Count() descending
-                       select new { Imie = obywatel.Name, Nazwisko = obywatel.Surname, PESEL = obywatel.PESEL, Count = phoneNumbers.Count() })
+                        join phone in phones on obywatel.PESEL equals phone.PESEL into phoneNumbers
+                        orderby phoneNumbers.Count() descending
+                        select new { Imie = obywatel.Name, Nazwisko = obywatel.Surname, PESEL = obywatel.PESEL, Count = phoneNumbers.Count() })
                        .Take(3);
 
             foreach (var os in seq2)
@@ -199,7 +199,7 @@ namespace Linq
                        let pelnyRok = dwucyfrowyRok < 100 ? (1900 + dwucyfrowyRok) : (2000 + dwucyfrowyRok)
                        let wiek = 2016 - pelnyRok // wtedy był 2016 :D
                        where wiek > 23
-                       select new { Imie = obywatel.Name, Nazwisko = obywatel.Surname, PESEL = obywatel.PESEL, wiek = wiek};
+                       select new { Imie = obywatel.Name, Nazwisko = obywatel.Surname, PESEL = obywatel.PESEL, wiek = wiek };
 
 
             foreach (var os in seq3)
@@ -214,14 +214,14 @@ namespace Linq
 
             // 2.4 Stworz srednia ocen w rozbiciu na płcie. Oznacza to, 
             //ze nalezy policzyc srednia ocen osobno dla kobiet, a osobno dla mezczyzn, 0.5p
-            //var seq4 = from student in students
-            //           join grade in grades on student.IndexNo equals grade.IndexNo into studentsGrades
-            //           let average = studentsGrades.Average(grade => grade.Grade)
-            //           //group student by student.Gender into genderAverages
-            //           select new { Gender = student.Gender, Average = average };
+            var seq4 = from student in students
+                       join grade in grades on student.IndexNo equals grade.IndexNo into studentsGrades
+                       let average = studentsGrades.Average(grade => grade.Grade)
+                       group average by student.Gender into studentGrades
+                       select new { Gender = studentGrades.Key, Average = studentGrades.Average() };
 
-            //foreach (var os in seq4)
-            //    Console.WriteLine("{0} {1} ", os.Gender ? "Mezczyzni" : "Kobiety", os.Average);
+            foreach (var os in seq4)
+                Console.WriteLine("{0} {1} ", os.Gender ? "Mezczyzni" : "Kobiety", os.Average);
 
             Console.WriteLine();
             Console.WriteLine("Powinno być:");
